@@ -39,7 +39,7 @@ body{
   justify-content: center; 
   align-items: center;
   height: 4em;
-  width: 30vw;
+  width: 50vw;
   color: black;   
   text-decoration: none;  
   transition-property: width; 
@@ -47,7 +47,7 @@ body{
   margin-bottom: 1px; 
 }
 .post-display:hover{
-  width: 20vw;  
+  width: 40vw;  
   border-bottom: 1px solid black; 
   margin-bottom: 0px; 
 }
@@ -57,9 +57,11 @@ body{
 .post-container {
   display: flex; 
   flex-direction: column;
-  padding-top: 5em; 
+  padding-top: 3em; 
   padding-left: 20%; 
   padding-right: 20%;
+  padding-bottom: 5em;
   justify-content: center;
+  text-align: justify;
 }
 /*END POST*/
