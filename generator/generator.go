@@ -11,11 +11,15 @@ import (
 
 //Configuration : contains paths from json
 type Configuration struct {
+	PageTitle         string
+	PageAuthor        string
 	PagesPath         string
 	TemplateIndexPath string
 	TemplatePostPath  string
+	TemplateStylePath string
 	WebpagePath       string
 	PostsPath         string
+	StylePath         string
 }
 
 //Generator : struct to contain information needed to page generation
@@ -27,9 +31,8 @@ type Generator struct {
 func New() Generator {
 	generator := Generator{}
 	err := gonfig.GetConf("./conf/config.json", &generator.config)
-	if err != nil {
-		panic(err)
-	}
+	check(err)
+
 	return generator
 }
 
@@ -41,6 +44,8 @@ func (g *Generator) GeneratePage() {
 	check(err)
 
 	createDir(g.config.WebpagePath)
+	createDir(g.config.StylePath)
+	copyFile(g.config.TemplateStylePath, g.config.StylePath+"/style.css")
 
 	os.RemoveAll(g.config.PostsPath) //To not get duplicates, inefficient but works for now
 	createDir(g.config.PostsPath)
@@ -55,7 +60,6 @@ func (g *Generator) GeneratePage() {
 		check(err)
 		posts = append(posts, newPost)
 
-		//TODO: Create the post file from newPost
 		templateContent, err := ioutil.ReadFile(g.config.TemplatePostPath)
 		check(err)
 
@@ -69,8 +73,7 @@ func (g *Generator) GeneratePage() {
 		check(err)
 	}
 
-	//TODO: Take site title and author from config file somewhere?
-	webpage := NewPage("My Site", "Henrik Söderberg", posts)
+	webpage := NewPage(g.config.PageTitle, g.config.PageAuthor, posts)
 
 	fileContent, err := ioutil.ReadFile(g.config.TemplateIndexPath)
 	check(err)
@@ -98,4 +101,12 @@ func createDir(path string) {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		os.Mkdir(path, 0700) //Read Write Execute permissions TODO: Maybe change this to something more suitable?
 	}
+}
+
+func copyFile(src string, dst string) {
+	input, err := ioutil.ReadFile(src)
+	check(err)
+
+	err = ioutil.WriteFile(dst, input, 0644)
+	check(err)
 }

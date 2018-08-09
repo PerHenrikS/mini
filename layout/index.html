@@ -2,11 +2,12 @@
 <html>
   <head>
     <meta charset="urf-8">
-    <title>Some title</title>
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <div>
-      <h1>MySite</h1>
+      <h1>{{.Title}}</h1>
       <ul>
         {{range .Posts}}
         <li>
@@ -15,5 +16,6 @@
         {{end}}
       </ul>
     </div>
+    {{.Author}}
   </body>
 </html>
