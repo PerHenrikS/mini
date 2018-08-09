@@ -1,6 +1,7 @@
 {
-	"PageTitle": "My Blog",
+	"PageTitle": "JuniorDev",
 	"PageAuthor": "Henrik Söderberg",
+	"AuthorEmail": "perhenriksoderberg@gmail.com",
 	"PagesPath": "./posts",
 	"TemplateIndexPath":"./layout/index.html",
 	"TemplatePostPath": "./layout/post.html",

@@ -12,6 +12,7 @@ import (
 //Configuration : contains paths from json
 type Configuration struct {
 	PageTitle         string
+	AuthorEmail       string
 	PageAuthor        string
 	PagesPath         string
 	TemplateIndexPath string
@@ -73,7 +74,7 @@ func (g *Generator) GeneratePage() {
 		check(err)
 	}
 
-	webpage := NewPage(g.config.PageTitle, g.config.PageAuthor, posts)
+	webpage := NewPage(g.config.PageTitle, g.config.PageAuthor, g.config.AuthorEmail, posts)
 
 	fileContent, err := ioutil.ReadFile(g.config.TemplateIndexPath)
 	check(err)

@@ -3,11 +3,15 @@
   <head>
     <meta charset="urf-8">
     <title>{{.Title}}</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
-    <div>
-      <h1>{{.Title}}</h1>
+    <div class="page-container">
+      <div class="page-header">
+        <h1 class="header-title">{{.Title}}</h1>
+        <small>{{.Author}}</small>
+      </div>
       <ul>
         {{range .Posts}}
         <li>
@@ -16,6 +20,5 @@
         {{end}}
       </ul>
     </div>
-    {{.Author}}
   </body>
 </html>

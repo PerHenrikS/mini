@@ -11,9 +11,10 @@ import (
 
 //Page : webpage structure
 type Page struct {
-	Title  string
-	Author string
-	Posts  []Post
+	Title       string
+	Author      string
+	AuthorEmail string
+	Posts       []Post
 }
 
 //Post : structure that contains a post page
@@ -26,7 +27,6 @@ type Post struct {
 
 //NewPost : creates a Post structure from a filepath
 func NewPost(path string, filename string) (Post, error) {
-	//TODO: Clean this up, maybe split the post creation to a helper function
 	postInfo := strings.Split(filename, "-")
 	if len(postInfo) != 3 {
 		return Post{}, fmt.Errorf("File name of post must be in format '#-postname-year.md' \nCheck your posts directory")
@@ -50,6 +50,6 @@ func NewPost(path string, filename string) (Post, error) {
 }
 
 //NewPage : helper function to create a webpage structure
-func NewPage(title string, author string, posts []Post) Page {
-	return Page{Title: title, Author: author, Posts: posts}
+func NewPage(title string, author string, authoremail string, posts []Post) Page {
+	return Page{Title: title, Author: author, Posts: posts, AuthorEmail: authoremail}
 }
