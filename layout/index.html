@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="urf-8">
+    <title>Some title</title>
+  </head>
+  <body>
+    <div>
+      <h1>MySite</h1>
+      <ul>
+        {{range .Posts}}
+        <li>
+          <a href="/posts/{{.Number}}-{{.Title}}.html">{{.Title}}</a>
+        </li>
+        {{end}}
+      </ul>
+    </div>
+  </body>
+</html>
