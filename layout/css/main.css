@@ -22,3 +22,28 @@ body{
   margin: 0; 
 }
 /*HEADER END*/
+
+/*MAIN CONTENT*/
+.posts-list {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+}
+.post-display{
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  height: 4em;
+  width: 20vw;
+  color: black;   
+  text-decoration: none;  
+  transition-property: width; 
+  transition-duration: 0.1s; 
+  margin-bottom: 1px; 
+}
+.post-display:hover{
+  width: 10vw;  
+  border-bottom: 1px solid black; 
+  margin-bottom: 0px; 
+}

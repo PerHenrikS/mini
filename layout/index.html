@@ -12,13 +12,14 @@
         <h1 class="header-title">{{.Title}}</h1>
         <small>{{.Author}}</small>
       </div>
-      <ul>
+      <div class="posts-list">
         {{range .Posts}}
-        <li>
-          <a href="/posts/{{.Number}}-{{.Title}}.html">{{.Title}}</a>
-        </li>
+        <a class="post-display" href="/posts/{{.Number}}-{{.Title}}.html">
+          <div class="post-display">
+            <h4>{{.Title}}</h4>
+          </div>
+        </a>
         {{end}}
-      </ul>
     </div>
   </body>
 </html>
