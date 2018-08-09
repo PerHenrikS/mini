@@ -5,8 +5,10 @@ import (
 	"html/template"
 	"io/ioutil"
 	"os"
+	"strings"
 
 	"github.com/tkanos/gonfig"
+	blackfriday "gopkg.in/russross/blackfriday.v2"
 )
 
 //Configuration : contains paths from json
@@ -52,12 +54,8 @@ func (g *Generator) GeneratePage() {
 	createDir(g.config.PostsPath)
 
 	for _, f := range files {
-		/*
-			This could be made more efficient by using a buffer
-			but as long as the post count is low there is no need
-		*/
 		var path = g.config.PagesPath + "/" + f.Name()
-		newPost, err := NewPost(path, f.Name())
+		newPost, err := g.newPost(path, f.Name())
 		check(err)
 		posts = append(posts, newPost)
 
@@ -69,6 +67,7 @@ func (g *Generator) GeneratePage() {
 
 		file, err := os.Create("./webpage/posts/" + newPost.Number + "-" + newPost.Title + ".html")
 		check(err)
+		defer file.Close()
 
 		err = t.Execute(file, newPost)
 		check(err)
@@ -88,6 +87,30 @@ func (g *Generator) GeneratePage() {
 
 	err = t.Execute(file, webpage)
 	check(err)
+}
+
+func (g *Generator) newPost(path string, filename string) (Post, error) {
+	postInfo := strings.Split(filename, "-")
+	if len(postInfo) != 3 {
+		return Post{}, fmt.Errorf("File name of post must be in format '#-postname-year.md' \nCheck your posts directory")
+	}
+
+	var newPost Post
+	fileContent, err := ioutil.ReadFile(path)
+	if err != nil {
+		return Post{}, fmt.Errorf("Could not read file from path: " + path)
+	}
+
+	input := []byte(fileContent)
+
+	output := blackfriday.Run(input)
+	newPost = Post{
+		Title:   postInfo[1],
+		Number:  postInfo[0],
+		Author:  g.config.PageAuthor,
+		Year:    strings.TrimSuffix(postInfo[2], ".md"),
+		Content: template.HTML(output)}
+	return newPost, nil
 }
 
 //What is the golang way of handling these?

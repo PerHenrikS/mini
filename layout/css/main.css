@@ -18,6 +18,10 @@ body{
   background-color: #1d1d1d;
   color: white;
 }
+.page-header a {
+  text-decoration: none;
+  color: white; 
+}
 .header-title {
   margin: 0; 
 }
@@ -35,7 +39,7 @@ body{
   justify-content: center; 
   align-items: center;
   height: 4em;
-  width: 20vw;
+  width: 30vw;
   color: black;   
   text-decoration: none;  
   transition-property: width; 
@@ -43,7 +47,19 @@ body{
   margin-bottom: 1px; 
 }
 .post-display:hover{
-  width: 10vw;  
+  width: 20vw;  
   border-bottom: 1px solid black; 
   margin-bottom: 0px; 
 }
+/*MAIN END*/
+
+/*POST*/
+.post-container {
+  display: flex; 
+  flex-direction: column;
+  padding-top: 5em; 
+  padding-left: 20%; 
+  padding-right: 20%;
+  justify-content: center;
+}
+/*END POST*/
