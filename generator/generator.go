@@ -42,8 +42,6 @@ func New() Generator {
 
 //GeneratePage : Creates a folder with webpage
 func (g *Generator) GeneratePage() {
-	posts := []Post{}
-
 	files, err := ioutil.ReadDir(g.config.PagesPath)
 	helpers.Check(err)
 
@@ -54,25 +52,7 @@ func (g *Generator) GeneratePage() {
 	os.RemoveAll(g.config.PostsPath) //To not get duplicates, inefficient but works for now
 	helpers.CreateDir(g.config.PostsPath)
 
-	for _, f := range files {
-		var path = g.config.PagesPath + "/" + f.Name()
-		newPost, err := g.newPost(path, f.Name())
-		helpers.Check(err)
-		posts = append(posts, newPost)
-
-		templateContent, err := ioutil.ReadFile(g.config.TemplatePostPath)
-		helpers.Check(err)
-
-		t, err := template.New("Post").Parse(string(templateContent))
-		helpers.Check(err)
-
-		file, err := os.Create("./webpage/posts/" + newPost.Number + "-" + newPost.Title + ".html")
-		helpers.Check(err)
-		defer file.Close()
-
-		err = t.Execute(file, newPost)
-		helpers.Check(err)
-	}
+	posts := g.generatePosts(files)
 
 	webpage := NewPage(g.config.PageTitle, g.config.PageAuthor, g.config.AuthorEmail, posts)
 
@@ -90,6 +70,9 @@ func (g *Generator) GeneratePage() {
 	helpers.Check(err)
 }
 
+/*
+Creates a Post structure from a .md file
+*/
 func (g *Generator) newPost(path string, filename string) (Post, error) {
 	postInfo := strings.Split(filename, "-")
 	if len(postInfo) != 3 {
@@ -112,4 +95,33 @@ func (g *Generator) newPost(path string, filename string) (Post, error) {
 		Year:    strings.TrimSuffix(postInfo[2], ".md"),
 		Content: template.HTML(output)}
 	return newPost, nil
+}
+
+/*
+Creates Post structures out of .md files defined in posts directory
+and generates the post.html pages
+*/
+func (g *Generator) generatePosts(files []os.FileInfo) []Post {
+	posts := []Post{}
+	for _, f := range files {
+		var path = g.config.PagesPath + "/" + f.Name()
+		newPost, err := g.newPost(path, f.Name())
+		helpers.Check(err)
+		posts = append(posts, newPost)
+
+		templateContent, err := ioutil.ReadFile(g.config.TemplatePostPath)
+		helpers.Check(err)
+
+		t, err := template.New("Post").Parse(string(templateContent))
+		helpers.Check(err)
+
+		file, err := os.Create("./webpage/posts/" + newPost.Number + "-" + newPost.Title + ".html")
+		helpers.Check(err)
+		defer file.Close()
+
+		err = t.Execute(file, newPost)
+		helpers.Check(err)
+	}
+
+	return posts
 }
