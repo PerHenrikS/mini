@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"io/ioutil"
+	"mini/helpers"
 	"os"
 	"strings"
 
@@ -34,7 +35,7 @@ type Generator struct {
 func New() Generator {
 	generator := Generator{}
 	err := gonfig.GetConf("./conf/config.json", &generator.config)
-	check(err)
+	helpers.Check(err)
 
 	return generator
 }
@@ -44,49 +45,49 @@ func (g *Generator) GeneratePage() {
 	posts := []Post{}
 
 	files, err := ioutil.ReadDir(g.config.PagesPath)
-	check(err)
+	helpers.Check(err)
 
-	createDir(g.config.WebpagePath)
-	createDir(g.config.StylePath)
-	copyFile(g.config.TemplateStylePath, g.config.StylePath+"/style.css")
+	helpers.CreateDir(g.config.WebpagePath)
+	helpers.CreateDir(g.config.StylePath)
+	helpers.CopyFile(g.config.TemplateStylePath, g.config.StylePath+"/style.css")
 
 	os.RemoveAll(g.config.PostsPath) //To not get duplicates, inefficient but works for now
-	createDir(g.config.PostsPath)
+	helpers.CreateDir(g.config.PostsPath)
 
 	for _, f := range files {
 		var path = g.config.PagesPath + "/" + f.Name()
 		newPost, err := g.newPost(path, f.Name())
-		check(err)
+		helpers.Check(err)
 		posts = append(posts, newPost)
 
 		templateContent, err := ioutil.ReadFile(g.config.TemplatePostPath)
-		check(err)
+		helpers.Check(err)
 
 		t, err := template.New("Post").Parse(string(templateContent))
-		check(err)
+		helpers.Check(err)
 
 		file, err := os.Create("./webpage/posts/" + newPost.Number + "-" + newPost.Title + ".html")
-		check(err)
+		helpers.Check(err)
 		defer file.Close()
 
 		err = t.Execute(file, newPost)
-		check(err)
+		helpers.Check(err)
 	}
 
 	webpage := NewPage(g.config.PageTitle, g.config.PageAuthor, g.config.AuthorEmail, posts)
 
 	fileContent, err := ioutil.ReadFile(g.config.TemplateIndexPath)
-	check(err)
+	helpers.Check(err)
 
 	t, err := template.New("Homepage").Parse(string(fileContent))
-	check(err)
+	helpers.Check(err)
 
 	file, err := os.Create("./webpage/index.html")
-	check(err)
+	helpers.Check(err)
 	defer file.Close()
 
 	err = t.Execute(file, webpage)
-	check(err)
+	helpers.Check(err)
 }
 
 func (g *Generator) newPost(path string, filename string) (Post, error) {
@@ -111,26 +112,4 @@ func (g *Generator) newPost(path string, filename string) (Post, error) {
 		Year:    strings.TrimSuffix(postInfo[2], ".md"),
 		Content: template.HTML(output)}
 	return newPost, nil
-}
-
-//What is the golang way of handling these?
-func check(err error) {
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-}
-
-func createDir(path string) {
-	if _, err := os.Stat(path); os.IsNotExist(err) {
-		os.Mkdir(path, 0700) //Read Write Execute permissions TODO: Maybe change this to something more suitable?
-	}
-}
-
-func copyFile(src string, dst string) {
-	input, err := ioutil.ReadFile(src)
-	check(err)
-
-	err = ioutil.WriteFile(dst, input, 0644)
-	check(err)
 }
