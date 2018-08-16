@@ -1,6 +1,28 @@
 ## Mini - A super minimalistic static site generator
 
-Mini is not a site generator for the masses. For my own small blogging site a CMS seemed like overkill. To learn a static site generator that has to be configured did not feel like fun, so I decided to write my own. 
+Sometimes a CMS seems to be overkill, welcome mini. A minimalistic static site generator that aims to minimize config. All you need to do is initialize the directory of choice and you are good to go. 
+
+## Usage 
+
+Dependencies: 
+```
+Go
+git 
+```
+
+Download and build: 
+```
+oops! coming soon.
+```
+
+Initialize and generate: 
+```
+mkdir mywebsite
+cd mywebsite/ 
+mini init
+mini gen
+```
+
 
 ### Planned features
 
