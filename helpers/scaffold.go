@@ -165,6 +165,9 @@ func InitDir() {
 				fmt.Println(err)
 				os.Exit(1)
 			}
+
+			fmt.Println("======Ready======")
+			fmt.Println("Open up './posts/1-Welcome!-2018.md' and start exploring!")
 		} else {
 			fmt.Println("posts directory already exists")
 		}
