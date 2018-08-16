@@ -36,9 +36,3 @@ mini gen
 - [ ] Serve content "mini serve"
 - [x] Cli for ez usage
 - [x] Command: init - initialize directory 
-
-### Stuff to think about
-
-- [ ] Post author config (join post with generator) ?
-- [ ] Clean code - make it more idiomatic
-- [ ] Nicer error handling
