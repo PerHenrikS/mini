@@ -1,6 +1,6 @@
 ## Mini - A super minimalistic static site generator
 
-Sometimes a CMS or custom website seems to be overkill, welcome mini. A minimalistic static site generator that aims to minimize config. All you need to do is initialize the directory of choice and you are good to go. 
+Sometimes a CMS or custom website seems to be overkill, welcome mini. A minimalistic static site generator that aims to minimize config. All you need to do is initialize the directory of choice and you are good to go. For now it is up to you how you will serve the content.
 
 ## Usage 
 
@@ -31,8 +31,10 @@ mini gen
 
 - [ ] Template inheritance for more complicated layouts
 - [ ] Media files 
-- [x] Cli for ez usage
 - [ ] Easier template themes
+- [ ] Dev environment, edit and reload conveniently etc.
+- [ ] Serve content "mini serve"
+- [x] Cli for ez usage
 - [x] Command: init - initialize directory 
 
 ### Stuff to think about
