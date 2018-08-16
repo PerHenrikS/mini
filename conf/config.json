@@ -1,6 +1,6 @@
 {
 		"PageTitle": "MyPage",
-		"PageAuthor": "Henrik",
+		"PageAuthor": "Henrik Söderberg",
 		"AuthorEmail": "",
 		"PagesPath": "./posts",
 		"TemplateIndexPath": "./layout/index.html",
