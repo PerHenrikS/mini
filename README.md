@@ -12,6 +12,6 @@ Mini is not a site generator for the masses. For my own small blogging site a CM
 
 ### Stuff to think about
 
-- [x] Post author config (join post with generator) ?
+- [ ] Post author config (join post with generator) ?
 - [ ] Clean code - make it more idiomatic
 - [ ] Nicer error handling
