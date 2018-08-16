@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"mini/generator"
-	"mini/manager"
+	"mini/helpers"
 	"os"
 )
 
@@ -16,6 +16,8 @@ commands:
 usage:
 	To create a webpage run 'mini init' inside 
 	the directory you want the page to be created.
+
+	'mini init' can also be used to update information
 	
 	Create posts with the format: 
 	'postnumber-name-year.md' 
@@ -36,7 +38,7 @@ usage:
 		mini.GeneratePage()
 		fmt.Println("Page generated into ./webpage")
 	case "init":
-		manager.InitializeDir()
+		helpers.InitConf()
 	default:
 		fmt.Println(usageHelp)
 	}

@@ -1,12 +1,12 @@
 {
-	"PageTitle": "JuniorDev",
-	"PageAuthor": "Henrik Söderberg",
-	"AuthorEmail": "perhenriksoderberg@gmail.com",
-	"PagesPath": "./posts",
-	"TemplateIndexPath":"./layout/index.html",
-	"TemplatePostPath": "./layout/post.html",
-	"TemplateStylePath": "./layout/css/main.css",
-	"WebpagePath": "./webpage",
-	"PostsPath": "./webpage/posts",
-	"StylePath": "./webpage/css"
+		"PageTitle": "MyPage",
+		"PageAuthor": "Henrik",
+		"AuthorEmail": "",
+		"PagesPath": "./posts",
+		"TemplateIndexPath": "./layout/index.html",
+		"TemplatePostPath": "./layout/post.html",
+		"TemplateStylePath": "./layout/css/main.css",
+		"WebpagePath": "./webpage",
+		"PostsPath": "./webpage/posts",
+		"StylePath": "./webpage/css"
 }
