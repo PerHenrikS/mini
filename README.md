@@ -8,7 +8,7 @@ Mini is not a site generator for the masses. For my own small blogging site a CM
 - [ ] Media files 
 - [x] Cli for ez usage
 - [ ] Easier template themes
-- [ ] Command: init - initialize directory 
+- [x] Command: init - initialize directory 
 
 ### Stuff to think about
 
