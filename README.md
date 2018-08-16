@@ -13,7 +13,8 @@ git
 Download and build: 
 ```
 cd into your $GOPATH/src 
-go get github.com/PerHenrikS/Mini
+git clone https://github.com/PerHenrikS/mini
+cd mini
 go install
 ```
 
