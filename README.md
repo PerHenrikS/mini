@@ -12,7 +12,9 @@ git
 
 Download and build: 
 ```
-oops! coming soon.
+cd into your $GOPATH/src 
+go get github.com/PerHenrikS/Mini
+go install
 ```
 
 Initialize and generate: 
