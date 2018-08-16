@@ -1,7 +1,7 @@
 {
-		"PageTitle": "MyPage",
-		"PageAuthor": "Henrik Söderberg",
-		"AuthorEmail": "",
+		"PageTitle": "John'S Page",
+		"PageAuthor": "John Doe",
+		"AuthorEmail": "John@John.Com",
 		"PagesPath": "./posts",
 		"TemplateIndexPath": "./layout/index.html",
 		"TemplatePostPath": "./layout/post.html",

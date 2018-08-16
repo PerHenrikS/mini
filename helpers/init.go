@@ -97,5 +97,14 @@ func InitConf() {
 	fmt.Printf("Wrote config with: \nAuthor: %s\nPagename: %s\nEmail: %s\n",
 		answers.Author,
 		answers.Pagename,
-		answers.Email)
+		answers.Email,
+	)
+
+	/*
+		InitDir is not supposed to do anything if layout already exists.
+		I don't want to override the users layout if a custom one
+		is made.
+		It is only made for initialization.
+	*/
+	InitDir()
 }

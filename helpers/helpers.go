@@ -7,10 +7,12 @@ import (
 )
 
 //CreateDir : creates a directory in desired path
-func CreateDir(path string) {
+func CreateDir(path string) bool {
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		os.Mkdir(path, 0700) //Read Write Execute permissions TODO: Maybe change this to something more suitable?
+		return true
 	}
+	return false
 }
 
 //CopyFile : copies a file to another
