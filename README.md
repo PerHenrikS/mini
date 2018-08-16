@@ -32,6 +32,7 @@ mini gen
 - [ ] Template inheritance for more complicated layouts
 - [ ] Media files 
 - [ ] Easier template themes
+- [ ] Different templates (pages, posts, something...)
 - [ ] Dev environment, edit and reload conveniently etc.
 - [ ] Serve content "mini serve"
 - [x] Cli for ez usage
