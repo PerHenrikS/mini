@@ -1,6 +1,6 @@
 ## Mini - A super minimalistic static site generator
 
-Sometimes a CMS seems to be overkill, welcome mini. A minimalistic static site generator that aims to minimize config. All you need to do is initialize the directory of choice and you are good to go. 
+Sometimes a CMS or custom website seems to be overkill, welcome mini. A minimalistic static site generator that aims to minimize config. All you need to do is initialize the directory of choice and you are good to go. 
 
 ## Usage 
 
