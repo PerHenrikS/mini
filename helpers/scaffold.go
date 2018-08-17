@@ -140,6 +140,7 @@ This is a post, follow the file naming conventions and all will be good.
 func InitDir() {
 	//If directory is created
 	if CreateDir("./layout") {
+		CreateDir("./assets")
 		CreateDir("./layout/css")
 		urls := [...]string{
 			"./layout/index.html",
