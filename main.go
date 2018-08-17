@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"mini/dev"
 	"mini/generator"
 	"mini/helpers"
 	"os"
@@ -39,6 +40,8 @@ usage:
 		fmt.Println("Page generated into ./webpage")
 	case "init":
 		helpers.InitConf()
+	case "serve":
+		dev.Serve()
 	default:
 		fmt.Println(usageHelp)
 	}
