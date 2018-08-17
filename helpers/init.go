@@ -97,7 +97,16 @@ func InitConf() {
 	err = ioutil.WriteFile("conf/config.json", jsonContent, 0644)
 	Check(err)
 
-	fmt.Printf("Wrote config with: \nAuthor: %s\nPagename: %s\nEmail: %s\n",
+	fmt.Printf(`
+==================
+Config initialized
+==================
+
+Author: %s
+Pagename: %s
+Email: %s
+
+`,
 		answers.Author,
 		answers.Pagename,
 		answers.Email,
