@@ -23,6 +23,7 @@ type Configuration struct {
 	TemplateStylePath string
 	WebpagePath       string
 	PostsPath         string
+	AssetsPath        string
 	StylePath         string
 }
 
@@ -47,6 +48,7 @@ func (g *Generator) GeneratePage() {
 
 	helpers.CreateDir(g.config.WebpagePath)
 	helpers.CreateDir(g.config.StylePath)
+	helpers.CreateDir(g.config.AssetsPath)
 	helpers.CopyFile(g.config.TemplateStylePath, g.config.StylePath+"/style.css")
 
 	os.RemoveAll(g.config.PostsPath) //To not get duplicates, inefficient but works for now

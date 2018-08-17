@@ -19,6 +19,7 @@ type genConfig struct {
 	TemplateStylePath string `json:"TemplateStylePath"`
 	WebpagePath       string `json:"WebpagePath"`
 	PostsPath         string `json:"PostsPath"`
+	AssetsPath        string `json:"AssetsPath"`
 	StylePath         string `json:"StylePath"`
 }
 
@@ -31,6 +32,7 @@ const templateIndexPath = "./layout/index.html"
 const templatePostPath = "./layout/post.html"
 const templateStylePath = "./layout/css/main.css"
 const webpagePath = "./webpage"
+const assetsPath = "./webpage/assets"
 const postsPath = "./webpage/posts"
 const stylePath = "./webpage/css"
 
@@ -85,6 +87,7 @@ func InitConf() {
 		TemplateStylePath: templateStylePath,
 		WebpagePath:       webpagePath,
 		PostsPath:         postsPath,
+		AssetsPath:        assetsPath,
 		StylePath:         stylePath,
 	}
 
