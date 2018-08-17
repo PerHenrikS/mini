@@ -25,6 +25,7 @@ cd mywebsite/
 mini init
 mini gen
 ```
+Serve ./webpage however you want!
 
 
 ### Planned features
