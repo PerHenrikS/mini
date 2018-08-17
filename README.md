@@ -24,8 +24,8 @@ mkdir mywebsite
 cd mywebsite/ 
 mini init
 mini gen
+mini serve
 ```
-Serve ./webpage however you want!
 
 
 ### Planned features
