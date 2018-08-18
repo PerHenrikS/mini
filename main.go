@@ -13,6 +13,7 @@ func main() {
 commands: 
 	mini gen  -- generates web page
 	mini init -- initializes folder structure
+	mini serve -- serve content for development 
 	
 usage:
 	To create a webpage run 'mini init' inside 
