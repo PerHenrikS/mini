@@ -32,3 +32,4 @@
 #Ignore the generated pages and posts these are to be saved / served somewhere else
 webpage/* 
 posts/*
+assets/*

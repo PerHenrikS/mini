@@ -30,11 +30,8 @@ mini serve
 
 ### Planned features
 
-- [ ] Template inheritance for more complicated layouts
-- [ ] Easier template themes
-- [ ] Different templates (pages, posts, something...)
+- [ ] General template themes
 - [ ] Dev environment, edit and reload conveniently etc.
 - [ ] Documentation
 - [x] Serve content "mini serve"
-- [x] Cli for ez usage
-- [x] Command: init - initialize directory 
+- [x] Cli for easy usage
