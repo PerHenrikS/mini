@@ -21,6 +21,7 @@ type genConfig struct {
 	PostsPath         string `json:"PostsPath"`
 	AssetsPath        string `json:"AssetsPath"`
 	StylePath         string `json:"StylePath"`
+	Port              string `json:"Port"`
 }
 
 /*
@@ -35,6 +36,7 @@ const webpagePath = "./webpage"
 const assetsPath = "./webpage/assets"
 const postsPath = "./webpage/posts"
 const stylePath = "./webpage/css"
+const defaultPort = ":8000"
 
 //Questions for the init survey
 var qs = []*survey.Question{
@@ -89,6 +91,7 @@ func InitConf() {
 		PostsPath:         postsPath,
 		AssetsPath:        assetsPath,
 		StylePath:         stylePath,
+		Port:              defaultPort,
 	}
 
 	jsonContent, err := json.MarshalIndent(&configuration, "", "\t\t")

@@ -25,6 +25,7 @@ type Configuration struct {
 	PostsPath         string
 	AssetsPath        string
 	StylePath         string
+	Port              string
 }
 
 //Generator : struct to contain information needed to page generation
