@@ -31,3 +31,10 @@ func Check(err error) {
 		os.Exit(1)
 	}
 }
+
+func CheckDir(path string) bool {
+	if _, err := os.Stat(path); !os.IsNotExist(err) {
+		return true
+	}
+	return false
+}

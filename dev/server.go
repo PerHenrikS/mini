@@ -16,18 +16,25 @@ func Serve() {
 
 	var conf generator.Configuration
 
-	if _, err := os.Stat("./conf"); !os.IsNotExist(err) {
-		config, err := os.Open("./conf/config.json")
-		helpers.Check(err)
-
-		byteConfig, err := ioutil.ReadAll(config)
-		helpers.Check(err)
-
-		config.Close()
-		json.Unmarshal(byteConfig, &conf)
-
-		fmt.Printf("Listening at port %s\n", conf.Port)
-
-		http.ListenAndServe(conf.Port, nil)
+	if !helpers.CheckDir("./conf") {
+		fmt.Println("The 'conf' directory does not exist. Run 'mini init'")
+		os.Exit(0)
 	}
+	if !helpers.CheckDir("./webpage") {
+		fmt.Println("It seems you haven't generated your webpage. Remember to run 'mini gen' before serving.")
+		os.Exit(0)
+	}
+
+	config, err := os.Open("./conf/config.json")
+	helpers.Check(err)
+
+	byteConfig, err := ioutil.ReadAll(config)
+	helpers.Check(err)
+
+	config.Close()
+	json.Unmarshal(byteConfig, &conf)
+
+	fmt.Printf("Listening at port %s\n", conf.Port)
+
+	http.ListenAndServe(conf.Port, nil)
 }
