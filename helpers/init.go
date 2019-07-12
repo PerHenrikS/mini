@@ -45,23 +45,20 @@ var qs = []*survey.Question{
 		Prompt: &survey.Input{
 			Message: "Author name:",
 		},
-		Validate:  survey.Required,
-		Transform: survey.Title,
+		Validate: survey.Required,
 	},
 	{
 		Name: "Pagename",
 		Prompt: &survey.Input{
 			Message: "Webpage title:",
 		},
-		Validate:  survey.Required,
-		Transform: survey.Title,
+		Validate: survey.Required,
 	},
 	{
 		Name: "Email",
 		Prompt: &survey.Input{
 			Message: "Author email: ",
 		},
-		Transform: survey.Title,
 	},
 }
 
