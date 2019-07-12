@@ -1,0 +1,27 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="urf-8">
+    <title>{{.Title}}</title>
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <div class="page-container">
+      <div class="page-header">
+        <h1 class="header-title">{{.Title}}</h1>
+        <small>{{.Author}}</small>
+      </div>
+      <div class="posts-list">
+        {{range .Posts}}
+        <a class="post-display" href="/posts/{{.Number}}-{{.Title}}.html">
+          <div class="post-display">
+            <h4>{{.Title}}</h4>
+          </div>
+        </a>
+        {{end}}
+    </div>
+  </body>
+</html>	
