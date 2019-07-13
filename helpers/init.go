@@ -10,32 +10,18 @@ import (
 
 //Struct to generate config.json
 type genConfig struct {
-	PageTitle         string `json:"PageTitle"`
-	PageAuthor        string `json:"PageAuthor"`
-	AuthorEmail       string `json:"AuthorEmail"`
-	PagesPath         string `json:"PagesPath"`
-	TemplateIndexPath string `json:"TemplateIndexPath"`
-	TemplatePostPath  string `json:"TemplatePostPath"`
-	TemplateStylePath string `json:"TemplateStylePath"`
-	WebpagePath       string `json:"WebpagePath"`
-	PostsPath         string `json:"PostsPath"`
-	AssetsPath        string `json:"AssetsPath"`
-	StylePath         string `json:"StylePath"`
-	Port              string `json:"Port"`
+	PageTitle   string `json:"PageTitle"`
+	PageAuthor  string `json:"PageAuthor"`
+	AuthorEmail string `json:"AuthorEmail"`
+	ThemeName   string `json:"ThemeName"`
+	Port        string `json:"Port"`
 }
 
 /*
 These are constants for now, I don't want the user to change these
 until a better directory system is implemented
 */
-const pagesPath = "./posts"
-const templateIndexPath = "./layout/index.html"
-const templatePostPath = "./layout/post.html"
-const templateStylePath = "./layout/css/main.css"
-const webpagePath = "./webpage"
-const assetsPath = "./webpage/assets"
-const postsPath = "./webpage/posts"
-const stylePath = "./webpage/css"
+const themeName = "default"
 const defaultPort = ":8000"
 
 //Questions for the init survey
@@ -77,18 +63,11 @@ func InitConf() {
 	CreateDir("conf")
 
 	configuration := genConfig{
-		PageTitle:         answers.Pagename,
-		PageAuthor:        answers.Author,
-		AuthorEmail:       answers.Email,
-		PagesPath:         pagesPath,
-		TemplateIndexPath: templateIndexPath,
-		TemplatePostPath:  templatePostPath,
-		TemplateStylePath: templateStylePath,
-		WebpagePath:       webpagePath,
-		PostsPath:         postsPath,
-		AssetsPath:        assetsPath,
-		StylePath:         stylePath,
-		Port:              defaultPort,
+		PageTitle:   answers.Pagename,
+		PageAuthor:  answers.Author,
+		AuthorEmail: answers.Email,
+		ThemeName:   themeName,
+		Port:        defaultPort,
 	}
 
 	jsonContent, err := json.MarshalIndent(&configuration, "", "\t\t")

@@ -14,18 +14,12 @@ import (
 
 //Configuration : contains paths from json
 type Configuration struct {
-	PageTitle         string
-	AuthorEmail       string
-	PageAuthor        string
-	PagesPath         string
-	TemplateIndexPath string
-	TemplatePostPath  string
-	TemplateStylePath string
-	WebpagePath       string
-	PostsPath         string
-	AssetsPath        string
-	StylePath         string
-	Port              string
+	PageTitle   string
+	AuthorEmail string
+	PageAuthor  string
+	PagesPath   string
+	ThemeName   string
+	Port        string
 }
 
 //Generator : struct to contain information needed to page generation
@@ -44,22 +38,38 @@ func New() Generator {
 
 //GeneratePage : Creates a folder with webpage
 func (g *Generator) GeneratePage() {
-	files, err := ioutil.ReadDir(g.config.PagesPath)
+	files, err := ioutil.ReadDir("./posts")
 	helpers.Check(err)
 
-	helpers.CreateDir(g.config.WebpagePath)
-	helpers.CreateDir(g.config.StylePath)
-	helpers.CreateDir(g.config.AssetsPath)
-	helpers.CopyFile(g.config.TemplateStylePath, g.config.StylePath+"/style.css")
+	/*
+		FIXME:
+			Add the directories based on the layout
+			directory structure as the webpage
+			will be generated from the existing template.
+	*/
+	helpers.CreateDir("./webpage")
 
-	os.RemoveAll(g.config.PostsPath) //To not get duplicates, inefficient but works for now
-	helpers.CreateDir(g.config.PostsPath)
+	//helpers.CreateDir(g.config.StylePath)	FIXME: Add these iteratively based on theme structure
+	helpers.CreateDir("./assets")
+
+	// FIXME: Copy the css file / files from ./layout/themename --> webpage/...
+	//helpers.CopyFile(g.config.TemplateStylePath, g.config.StylePath+"/style.css")
+	helpers.CreateDir("./webpage/css")
+	helpers.CopyFile("./layout/"+g.config.ThemeName+"/css/main.css", "./webpage/css/style.css")
+
+	// This refers to the compiled posts
+	os.RemoveAll("./webpage/posts") //To not get duplicates, inefficient but works for now
+	helpers.CreateDir("./webpage/posts")
 
 	posts := g.generatePosts(files)
 
 	webpage := NewPage(g.config.PageTitle, g.config.PageAuthor, g.config.AuthorEmail, posts)
 
-	fileContent, err := ioutil.ReadFile(g.config.TemplateIndexPath)
+	/*
+		FIXME:
+			Read from layout/theme/index.html
+	*/
+	fileContent, err := ioutil.ReadFile("./layout/" + g.config.ThemeName + "/index.html") // FIXME: Initial test with default layout
 	helpers.Check(err)
 
 	t, err := template.New("Homepage").Parse(string(fileContent))
@@ -107,12 +117,13 @@ and generates the post.html pages
 func (g *Generator) generatePosts(files []os.FileInfo) []Post {
 	posts := []Post{}
 	for _, f := range files {
-		var path = g.config.PagesPath + "/" + f.Name()
+		var path = "./posts/" + f.Name()
 		newPost, err := g.newPost(path, f.Name())
 		helpers.Check(err)
 		posts = append(posts, newPost)
 
-		templateContent, err := ioutil.ReadFile(g.config.TemplatePostPath)
+		// FIXME: Take from layout/<theme>/post
+		templateContent, err := ioutil.ReadFile("./layout/" + g.config.ThemeName + "/post.html")
 		helpers.Check(err)
 
 		t, err := template.New("Post").Parse(string(templateContent))
