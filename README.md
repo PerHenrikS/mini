@@ -31,9 +31,9 @@ mini serve
 
 ### Planned features
 
-- [ ] General template themes
 - [ ] Dev environment, edit and reload conveniently etc.
 - [ ] Documentation
-- [ ] Templates from dir (downloadable from GH)
+- [ ] Templates from url -- mini theme :url:
+- [x] Theming
 - [x] Serve content "mini serve"
 - [x] Cli for easy usage
