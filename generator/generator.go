@@ -41,35 +41,26 @@ func (g *Generator) GeneratePage() {
 	files, err := ioutil.ReadDir("./posts")
 	helpers.Check(err)
 
-	/*
-		FIXME:
-			Add the directories based on the layout
-			directory structure as the webpage
-			will be generated from the existing template.
-	*/
 	helpers.CreateDir("./webpage")
 
-	//helpers.CreateDir(g.config.StylePath)	FIXME: Add these iteratively based on theme structure
 	helpers.CreateDir("./assets")
 
-	// FIXME: Copy the css file / files from ./layout/themename --> webpage/...
-	//helpers.CopyFile(g.config.TemplateStylePath, g.config.StylePath+"/style.css")
+	// style.css naming convention enforced -- you can compile to it anyways
 	helpers.CreateDir("./webpage/css")
-	helpers.CopyFile("./layout/"+g.config.ThemeName+"/css/main.css", "./webpage/css/style.css")
+	helpers.CopyFile("./layout/"+g.config.ThemeName+"/css/style.css", "./webpage/css/style.css")
 
 	// This refers to the compiled posts
 	os.RemoveAll("./webpage/posts") //To not get duplicates, inefficient but works for now
+
+	// posts dir structure enforced for now
 	helpers.CreateDir("./webpage/posts")
 
 	posts := g.generatePosts(files)
 
 	webpage := NewPage(g.config.PageTitle, g.config.PageAuthor, g.config.AuthorEmail, posts)
 
-	/*
-		FIXME:
-			Read from layout/theme/index.html
-	*/
-	fileContent, err := ioutil.ReadFile("./layout/" + g.config.ThemeName + "/index.html") // FIXME: Initial test with default layout
+	// index.html naming convention enforced
+	fileContent, err := ioutil.ReadFile("./layout/" + g.config.ThemeName + "/index.html")
 	helpers.Check(err)
 
 	t, err := template.New("Homepage").Parse(string(fileContent))
